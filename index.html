@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eShop Thingy</title>
+</head>
+<body>
+    <h1 id="header">Omnidimentional Shop</h1>
+
+    <div id="itemContainer">
+    </div>
+</body>
+
+<script>
+
+const items = [
+  {id: 'tomeSet', imgSrc: 'Tome.webp', info: 'A Strange Tome, may or may not be cursed', handleClick: function() { addItem(this); }
+  },
+  {id: 'ringSet', imgSrc: 'ring.jpg', info: 'A Strange Ring, may or may not be cursed', handleClick: function() { addItem(this); }
+  },
+  {
+    id: 'spellSet', imgSrc: 'scroll.webp', info: 'A Strange Spell, may or may not be cursed', handleClick: function() { addItem(this); }
+  }
+];
+
+const itemCont = document.getElementById('itemContainer');
+const itemList = document.getElementById('itemList');
+const clickedItems = [];
+
+function addItem(item) {
+  clickedItems.push(item);
+  const listItem = document.createElement('li');
+  listItem.textContent = item.info;
+  itemList.appendChild(listItem);
+}
+
+items.forEach(item => {
+  const itemSet = document.createElement('div');
+  const itemImg = document.createElement('img');
+  const itemInfo = document.createElement('p');
+  const button = document.createElement('button');
+
+  itemSet.setAttribute('id', item.id);
+  itemImg.src = item.imgSrc;
+  itemImg.setAttribute('id', `${item.id}Img`);
+  itemInfo.setAttribute('id', `${item.id}Info`);
+  itemInfo.textContent = item.info;
+
+  button.textContent = 'Add to List';
+  button.onclick = item.handleClick;
+
+  itemSet.appendChild(itemImg);
+  itemSet.appendChild(itemInfo);
+  itemSet.appendChild(button);
+  itemCont.appendChild(itemSet);
+});
+
+
+</script>
+
+</html>
